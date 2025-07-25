@@ -1,0 +1,8 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/docker_registry_setup
+- name: Log in to private Docker registry
+  community.docker.docker_login:
+    registry_url: "ghcr.io"
+    username: "{{ docker_username }}"
+    password: "{{ docker_token }}"

@@ -1,0 +1,15 @@
+# site.yml
+- name: Apply selected roles
+  hosts: all
+  become: yes
+  become_method: sudo
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=accept-new'  # Accept new SSH keys automatically
+  vars_files:
+    - vault.yml  # Load sensitive variables from vault
+
+  roles:
+    - role: docker_install 
+    - role: docker_registry_setup 
+    - role: docker_compose  
+   
