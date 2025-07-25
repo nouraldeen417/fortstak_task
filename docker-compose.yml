@@ -1,13 +1,15 @@
 version: "3.9"
 services:
   app:
-    image: nour/my-node-app:latest
+    image: ghcr.io/nouraldeen417/my-node-app:latest
     ports:
       - "4000:4000"
     depends_on:
       - mongo
     environment:
       - MONGO_URI=mongodb+srv://ankitvis609:Sonu135790@cluster0.esi3ulq.mongodb.net/todolistDb
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
     healthcheck:
       test:  ["CMD", "wget", "-q", "--spider", "http://localhost:4000"]
       interval: 30s
@@ -22,5 +24,12 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --label-enable --cleanup --interval 60
+    restart: always      
 volumes:
   mongo-data:
