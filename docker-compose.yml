@@ -9,7 +9,7 @@ services:
     environment:
       - MONGO_URI=mongodb+srv://ankitvis609:Sonu135790@cluster0.esi3ulq.mongodb.net/todolistDb
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4000"]
+      test:  ["CMD", "wget", "-q", "--spider", "http://localhost:4000"]
       interval: 30s
       timeout: 10s
       retries: 3

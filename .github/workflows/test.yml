@@ -1,15 +1,27 @@
-name: CI Pipeline
-
+name: CI - Build & Push to GHCR
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write # Required to push to GHCR
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Run a script
-        run: echo "Hello, GitHub Actions!"
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Log in to GHCR
+      run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+    - name: Build Docker image
+      run: |
+        cd src/
+        docker build -t ghcr.io/${{ github.repository_owner }}/my-node-app:latest .
+
+    - name: Push Docker image
+      run: |
+        docker push ghcr.io/${{ github.repository_owner }}/my-node-app:latest
