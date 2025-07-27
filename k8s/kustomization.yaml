@@ -1,0 +1,7 @@
+resources:
+  - deployment.yaml
+  - service.yaml
+
+images:
+  - name: ghcr.io/nouraldeen417/my-node-app
+    newTag: latest
