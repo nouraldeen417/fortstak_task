@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: todoapp
+  name: todoapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todoapp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: todoapp
+    spec:
+      containers:
+      - image: ghcr.io/nouraldeen417/my-node-app:latest
+        name: todoapp
+        ports:
+        - containerPort: 4000
+        envFrom:
+        - configMapRef:
+            name: mongodb-config  # for MONGODB_URL
+      imagePullSecrets:  # Reference the secret here
+      - name: ghcr-secret
+
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: todoapp-svc
+  name: todoapp-svc
+spec:
+  selector:
+    app: todoapp
+  type: NodePort
+  ports:
+  - port: 4000
+    protocol: TCP
+    targetPort: 4000
+    nodePort: 30007
+status:
+  loadBalancer: {}
