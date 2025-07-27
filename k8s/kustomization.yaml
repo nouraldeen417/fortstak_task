@@ -1,6 +1,7 @@
 resources:
-  - deployment.yaml
-  - service.yaml
+  - app_deployment.yaml
+  - mongo-config.yaml
+  - mongo-deployment.yaml
 
 images:
   - name: ghcr.io/nouraldeen417/my-node-app
