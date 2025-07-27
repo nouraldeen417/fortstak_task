@@ -210,7 +210,7 @@ body {
     width: 500px;
     height: 500px;
     /* background-image: linear-gradient(120deg, #a4038e 0%, #491687 100%); */
-    background-image: linear-gradient(120deg, #36a403 0%, #491687 100%);
+    background-image: linear-gradient(120deg, #a40310 0%, #491687 100%);
     border-radius: 40% 60% 63% 37% / 36% 39% 61% 64% ;;
     transform: rotate(-50deg);
     transition: all 0.5s ease;
