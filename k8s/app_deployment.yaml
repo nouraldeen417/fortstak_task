@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: todoapp
-  name: todoapp
+  name: todo-app
 spec:
   replicas: 1
   selector:
