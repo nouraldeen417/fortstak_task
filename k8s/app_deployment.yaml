@@ -46,6 +46,6 @@ spec:
   - port: 4000
     protocol: TCP
     targetPort: 4000
-    nodePort: 30007
+    nodePort: 30005
 status:
   loadBalancer: {}
