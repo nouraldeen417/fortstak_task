@@ -24,9 +24,6 @@ spec:
       - name: mongodb-data
         emptyDir: {}  # For testing (use PersistentVolume in production)
 
-
-
-
 ---
 apiVersion: v1
 kind: Service
