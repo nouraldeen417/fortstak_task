@@ -9,7 +9,7 @@
     - vault.yml  # Load sensitive variables from vault
 
   roles:
-    - role: docker_install 
-    - role: docker_registry_setup 
-    - role: docker_compose  
+    - role: docker_install            # install Docker
+    - role: docker_registry_setup     # setup private Docker registry and use vault for credentials
+    - role: docker_compose            # apply Docker Compose file
    

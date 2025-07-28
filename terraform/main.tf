@@ -5,7 +5,7 @@ module "network" {
   vpc_cidr               = "10.0.0.0/16"
   vpc_reagion            = "us-east-1"
   public_subnet_count    = 2
-  private_subnet_count   = 2
+  private_subnet_count   = 0
   availability_zones     = ["us-east-1a", "us-east-1b"]
   ngw_tagname            = "ngw"
   igw_tagname            = "igw"
@@ -42,8 +42,7 @@ module "security" {
       cidr_blocks = ["0.0.0.0/0"]
     }
   ]
-  # ssh_key_pair = "ssh-key-network-app"
-  # ssh_key_path = "."
+
 }
 
 module "compute" {
