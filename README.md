@@ -102,7 +102,56 @@ This setup automatically builds and pushes the `app:latest` Docker image to your
 
 ## 3. Ansible for Environment Preparation & Deployment
 
-_Explain your playbooks and roles: installing Docker, copying the Docker Compose file, logging in to GHCR, running the app, etc._
+To automate environment preparation and application deployment, I created a modular **Ansible setup** using a main playbook (`site.yml`) and reusable roles. The structure was designed to support multiple operating systems (Debian/Ubuntu and RHEL/CentOS), allow secure authentication with a private registry, and manage both cloud and on-prem hosts.
+
+### 🔧 Purpose of Each Role
+
+- **`docker_install`**: Installs Docker on the target system. It supports both **Debian-based** and **RedHat-based** distributions by using OS-specific variable files (e.g. `roles/docker_install/vars/main.yaml`).
+  
+- **`docker_registry_setup`**: Logs into the private **GHCR** registry using credentials stored in an encrypted `vault.yml` file. This approach ensures sensitive information (like tokens) is not hardcoded or pushed to the repo.
+
+- **`docker_compose`**: Copies a predefined `docker-compose.yml` file to the remote host (stored in `roles/docker_compose/files/`) and runs it to deploy the app and MongoDB services.
+
+### 🗂️ Ansible Directory Structure
+
+
+```
+
+ansible/  
+├── site.yml  
+├── vault.yml  
+├── inventory/  
+│ ├── aws_hosts # auto-generated after Terraform run  
+│ └── on_prem_hosts # manually maintained  
+└── roles/  
+| ├── docker_install/  
+| ├── docker_registry_setup/  
+| └── docker_compose/
+
+```
+
+This setup supports **manual or scripted host inventory updates**. For example, after running Terraform, a script places the EC2 public IP into `inventory/aws_hosts`, allowing Ansible to target it immediately.
+
+### 📄 site.yml (Main Playbook)
+
+```yaml
+- name: Apply selected roles
+  hosts: all
+  become: yes
+  become_method: sudo
+  vars:
+    ansible_ssh_common_args: '-o StrictHostKeyChecking=accept-new'  # Accept new SSH keys automatically
+  vars_files:
+    - vault.yml  # Load sensitive variables from vault
+
+  roles:
+    - role: docker_install            # Install Docker (OS-specific)
+    - role: docker_registry_setup     # Login to GHCR using vault credentials
+    - role: docker_compose            # Deploy using Docker Compose
+
+```
+
+This design ensures that the Ansible setup is **flexible**, **secure**, and **reusable across different environments** and projects.
 
 ---
 
