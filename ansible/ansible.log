@@ -1223,3 +1223,49 @@ core/2.18/reference_appendices/interpreter_discovery.html for more information.
 2025-07-25 19:36:46,687 p=35221 u=root n=ansible INFO| changed: [54.226.148.157]
 2025-07-25 19:36:46,700 p=35221 u=root n=ansible INFO| PLAY RECAP ********************************************************************************************************************
 2025-07-25 19:36:46,701 p=35221 u=root n=ansible INFO| 54.226.148.157             : ok=10   changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+2025-07-29 17:31:03,233 p=6700 u=root n=ansible ERROR| ERROR! Attempting to decrypt but no vault secrets found
+2025-07-29 17:31:44,857 p=6818 u=root n=ansible INFO| PLAY [Apply selected roles] **********************************************************************************************************
+2025-07-29 17:31:44,992 p=6818 u=root n=ansible INFO| TASK [Gathering Facts] ***************************************************************************************************************
+2025-07-29 17:31:45,641 p=6818 u=root n=ansible ERROR|  [ERROR]: User interrupted execution
+
+2025-07-29 17:31:52,273 p=6865 u=root n=ansible INFO| PLAY [Apply selected roles] **********************************************************************************************************
+2025-07-29 17:31:52,302 p=6865 u=root n=ansible INFO| TASK [Gathering Facts] ***************************************************************************************************************
+2025-07-29 17:32:01,953 p=6865 u=root n=ansible WARNING| [WARNING]: Platform linux on host 54.80.60.53 is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-29 17:32:01,954 p=6865 u=root n=ansible INFO| ok: [54.80.60.53]
+2025-07-29 17:32:01,964 p=6865 u=root n=ansible INFO| TASK [docker_install : Add Docker GPG key (Debian/Ubuntu)] ***************************************************************************
+2025-07-29 17:32:02,665 p=6865 u=root n=ansible ERROR|  [ERROR]: User interrupted execution
+
+2025-07-29 17:32:22,426 p=7019 u=root n=ansible INFO| PLAY [Apply selected roles] **********************************************************************************************************
+2025-07-29 17:32:22,453 p=7019 u=root n=ansible INFO| TASK [Gathering Facts] ***************************************************************************************************************
+2025-07-29 17:32:29,631 p=7019 u=root n=ansible WARNING| [WARNING]: Platform linux on host 54.80.60.53 is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-29 17:32:29,631 p=7019 u=root n=ansible INFO| ok: [54.80.60.53]
+2025-07-29 17:32:29,640 p=7019 u=root n=ansible INFO| TASK [docker_install : Add Docker GPG key (Debian/Ubuntu)] ***************************************************************************
+2025-07-29 17:32:33,640 p=7019 u=root n=ansible INFO| changed: [54.80.60.53]
+2025-07-29 17:32:33,652 p=7019 u=root n=ansible INFO| TASK [docker_install : Add Docker repository (Debian/Ubuntu)] ************************************************************************
+2025-07-29 17:32:50,117 p=7019 u=root n=ansible INFO| changed: [54.80.60.53]
+2025-07-29 17:32:50,127 p=7019 u=root n=ansible INFO| TASK [docker_install : Install Docker (Debian/Ubuntu)] *******************************************************************************
+2025-07-29 17:33:16,633 p=7019 u=root n=ansible INFO| changed: [54.80.60.53]
+2025-07-29 17:33:16,641 p=7019 u=root n=ansible INFO| TASK [docker_install : Add Docker repository (CentOS)] *******************************************************************************
+2025-07-29 17:33:16,657 p=7019 u=root n=ansible INFO| skipping: [54.80.60.53]
+2025-07-29 17:33:16,684 p=7019 u=root n=ansible INFO| TASK [docker_install : Install Docker (CentOS)] **************************************************************************************
+2025-07-29 17:33:16,697 p=7019 u=root n=ansible INFO| skipping: [54.80.60.53]
+2025-07-29 17:33:16,710 p=7019 u=root n=ansible INFO| TASK [docker_install : Ensure Docker service is started and enabled] *****************************************************************
+2025-07-29 17:33:21,216 p=7019 u=root n=ansible INFO| ok: [54.80.60.53]
+2025-07-29 17:33:21,226 p=7019 u=root n=ansible INFO| TASK [docker_install : Add user to docker group (optional)] **************************************************************************
+2025-07-29 17:33:24,807 p=7019 u=root n=ansible INFO| changed: [54.80.60.53]
+2025-07-29 17:33:24,826 p=7019 u=root n=ansible INFO| TASK [docker_registry_setup : Log in to private Docker registry] *********************************************************************
+2025-07-29 17:33:29,089 p=7019 u=root n=ansible INFO| changed: [54.80.60.53]
+2025-07-29 17:33:29,127 p=7019 u=root n=ansible INFO| TASK [docker_compose : Get ansible user home directory] ******************************************************************************
+2025-07-29 17:33:29,146 p=7019 u=root n=ansible INFO| ok: [54.80.60.53]
+2025-07-29 17:33:29,176 p=7019 u=root n=ansible INFO| TASK [docker_compose : Copy docker-compose.yml to home directory] ********************************************************************
+2025-07-29 17:33:38,445 p=7019 u=root n=ansible INFO| changed: [54.80.60.53]
+2025-07-29 17:33:38,467 p=7019 u=root n=ansible INFO| TASK [docker_compose : Run Docker Compose from home directory] ***********************************************************************
+2025-07-29 17:34:01,731 p=7019 u=root n=ansible INFO| changed: [54.80.60.53]
+2025-07-29 17:34:01,748 p=7019 u=root n=ansible INFO| PLAY RECAP ***************************************************************************************************************************
+2025-07-29 17:34:01,749 p=7019 u=root n=ansible INFO| 54.80.60.53                : ok=10   changed=7    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
